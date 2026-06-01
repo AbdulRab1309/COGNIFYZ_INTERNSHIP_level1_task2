@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TASK 1 : LEVEL 2</title>
+  
+  <!-- Basic CSS to make the layout readable for your analysis -->
+  <style>
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: white;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: linear-gradient(132deg, #000000,#00ff00, #0000ff,#e60073,#ff0000,#ffffff);
+      background-size: 400% 400%;
+      animation: BackgroundGradient 15s ease infinite;
+     }
+     
+     /* external CSS animation for the background gradient */
+    @keyframes BackgroundGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .task-container {
+      border: 1px solid #ddd;
+      font: ;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+    button {
+      padding: 10px 15px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #000768;
+    }
+    input {
+      padding: 8px;
+      margin: 5px 0;
+      width: calc(100% - 20px);
+      display: block;
+    }
+    #calculator-result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>JavaScript Logic Analysis</h2>
+
+  <!-- Color Changing Button -->
+  <div class="task-container" id="color-box">
+    <h3>Color Changer</h3>
+    <p>Click the button to change the background color of this specific container.</p>
+    <button id="color-btn">Change Color</button>
+  </div>
+
+  <!-- Time-Based Greeting -->
+  <div class="task-container">
+    <h3>Time-Based Greeting</h3>
+    <p>Click to trigger an alert based on your current system time.</p>
+    <button id="greeting-btn">Check Time & Greet</button>
+  </div>
+
+  <!-- Basic Calculator -->
+  <div class="task-container">
+    <h3>Task 3: Addition Calculator</h3>
+    <input type="number" id="first-num" placeholder="Enter First Number">
+    <input type="number" id="second-num" placeholder="Enter Second Number">
+    <button id="calculate-btn">Calculate </button>
+    
+    <div id="calculator-result">Result will appear here...</div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+
+    // --- COLOR CHANGE LOGIC ---
+    const colorButton = document.getElementById('color-btn');
+    const colorBox = document.getElementById('color-box');
+
+    colorButton.addEventListener('click', function() {
+      // Generate a random every possible color in hex codes (from #000000 to #FFFFFF)
+      const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      // Apply it to the container
+      colorBox.style.backgroundColor = randomColor;
+    });
+
+    // --- TIME-BASED GREETING LOGIC ---
+    const greetingButton = document.getElementById('greeting-btn');
+
+    greetingButton.addEventListener('click', function() {
+      const currentHour = new Date().getHours(); // Gets hour from 0 to 23
+      let message = "";
+
+      // Giving a greeting based on the hours of the day
+      if (currentHour >= 5 && currentHour < 12) {
+        message = "Good morning! Time to start the day, May it be productive!";
+      } else if (currentHour >= 12 && currentHour < 18) {
+        message = "Good afternoon! Hope your day is going well.";
+      } else {
+        message = "Good evening! Have a great night, and don't forget to relax!";
+      }
+
+      alert(message);
+    });
+
+    // --- BASIC CALCULATOR LOGIC ---
+    const calcButton = document.getElementById('calculate-btn');
+    const resultDisplay = document.getElementById('calculator-result');
+
+    calcButton.addEventListener('click', function() {
+      // parseFloat function converts the string from the input into a decimal number
+      const num1 = parseFloat(document.getElementById('first-num').value);
+      const num2 = parseFloat(document.getElementById('second-num').value);
+
+      // Validation: Check if either input is NOT a number (empty or invalid)
+      if (isNaN(num1) || isNaN(num2)) {
+        resultDisplay.textContent = "Error: Please enter valid numbers in both boxes.";
+        resultDisplay.style.color = "red"; // Red indicates for error
+        return; // the code terminates here as per the error condition and returns.
+      }
+
+      // Calculate and display
+      const sum = num1 + num2;
+      resultDisplay.textContent = "Result: " + sum;
+      resultDisplay.style.color = "#0056b3"; // Reset text color on success
+    });
+  </script>
+
+</body>
+</html>>
