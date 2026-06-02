@@ -1,6 +1,6 @@
 # COGNIFYZ_INTERNSHIP_LEVEL1_TASK2
 
----
+
 
 ## JavaScript Logic Analysis - Level 2 Task
 
